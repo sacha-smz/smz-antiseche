@@ -59,7 +59,7 @@ git reflog
 # revenir à un état précédent
 # un commit peut être identifié par son hash (les 8 premiers caractères suffisent)
 git checkout commit
-# revenir à l'état courant
+# afficher les modifications apportées par un commit
 git show commit
 # afficher le détail des lignes modifiées et les auteurs des modifications
 git blame file
