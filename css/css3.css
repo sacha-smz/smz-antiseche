@@ -1,0 +1,351 @@
+/*
+  W3C liste exhaustive des sélecteurs : https://www.w3.org/TR/selectors-3/#selectors
+*/
+
+* {
+  /* tout sélectionner */
+}
+
+el1,
+el2 {
+  /* élément 1 et élément 2 */
+}
+
+el1 + el2 {
+  /* élément 2 juste après élément 1 */
+}
+
+el1 el2 {
+  /* élément 2 contenu dans élément 1 */
+}
+
+.class,
+#id {
+  /* classe, id */
+}
+
+el[attr] {
+  /* élément qui possède l'attribut */
+}
+
+el[attr="val"],
+el[attr*="val"] {
+  /*
+    valeur exacte de l'attribut,
+    la valeur de l'attribut contient la chaîne renseignée
+  */
+}
+
+/* import de police */
+@font-face {
+  font-family: "font1";
+  src: url(".../font1.ttf") format("truetype"), url(".../font1.svg") format("svg");
+}
+
+/* formatage de texte */
+el {
+  font-family: font1, font2, sans-serif; /* la première police disponible est utilisée */
+  font-size: 1.2rem; /* taille de police */
+  font-style: italic; /* normal*|italic|oblique */
+  font-weight: bold; /* normal*|lighter|bold|bolder ou valeurs numériques */
+  color: red; /* couleur du texte, nom|rgb()|rgba()|#hex */
+  text-decoration-line: underline; /* none*|underline|overline|line-through|blink|spelling-error|grammar-error */
+  text-decoration-style: dashed; /* solid*|double|dotted|dashed|wavy */
+  text-decoration: underline overline blue dotted; /* raccourci pour text-decoration-line, text-decoration-color et text-decoration-style  */
+  text-align: justify; /* alignement du contenu d'un bloc left*|right|center|justify */
+}
+
+el {
+  float: left; /* l'élément se positionne à gauche et les éléments suivants se réarrangent autour none*|left|right */
+}
+el {
+  clear: both; /* l'élément ne se réarrange pas autour de l'élément flottant et se positionne à la suite none*|left|right|both */
+}
+
+el {
+  background-color: blue; /* couleur d'arrière-plan */
+  background-image: url(".../img.png"); /* image d'arrière-plan */
+  background-image: url(".../img1.png"), url(".../img2.png"); /* superposition d'images d'arrière-plan, la première est au-dessus */
+  background-image: linear-gradient(
+    to bottom right,
+    red,
+    blue
+  ); /* utilisation d'un dégradé comme image d'arrière-plan */
+  background-size: cover; /* gestion de la taille de l'image d'arrière-plan auto*|length|cover|contain */
+  background-attachment: fixed; /* gestion de positionnement de l'arrière-plan dans le viewport scroll*|fixed|local */
+  background-repeat: no-repeat; /* répétition de l'arrière-plan pour remplir l'espace disponible repeat*|repeat-x|repeat-y|no-repeat */
+  background-position: top right; /* position de l'arrière-plan, combinaison des mots-clé top, bottom, left, right et center, pourcentages ou unités css */
+  background: url(".../img.png") no-repeat top center fixed / cover; /* combinaison de propriétés concernant l'arrière-plan, l'ordre n'a pas d'importance */
+}
+
+el {
+  opacity: 0.8; /* transparence, de 0 à 1 */
+}
+
+/* bordures */
+el {
+  border-top-width: 2px; /* épaisseur de la bordure medium*|thin|thick ou unités css */
+  border-top-color: red; /* couleur de la bordure */
+  border-width: thick; /* combinaison de border-top-width, border-right-width, border-bottom-width et border-left-width */
+  /*
+    combinaisons :
+    1 valeur -> 4 côtés, 2 valeurs -> haut/bas droite/gauche,
+    3 valeurs -> haut gauche/droite bas, 4 valeurs haut droite bas gauche
+  */
+  border-top-style: solid; /* style de bordure none*|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset */
+  border-color: blue red yellow green; /* combinaison de border-top-color, border-right-color, border-bottom-color et border-left-color */
+  border-style: dashed dotted; /* combinaison de border-top-style, border-right-style, border-bottom-style et border-left-style */
+  /* combinaisons de border-width, border-style et border-color */
+  border-top: 1rem solid red; /* idem pour border-right, border-bottom et border-left */
+  border: 2px dashed blue; /* s'applique aux 4 côtés */
+  /* arrondis des coins de la bordure */
+  border-top-left-radius: 10%; /* idem pour border-top-right-radius, border-bottom-right-radius et border-bottom-left-radius */
+  /*
+    combinaison :
+    1 valeur -> 4 coins, 2 valeurs -> top-left/bottom-right,
+    3 valeurs -> top-left, top-right/bottom-left, bottom-right, 4 valeurs -> top-left, top-right, bottom-right, bottom-left,
+    rayons horizontaux / rayons verticaux pour des arrondis elliptiques */
+  border-radius: 25% 10% / 5% 20%;
+}
+
+/* tableaux */
+table {
+  border-collapse: collapse; /* fusion des bordures des cellules adjacentes separate*|collapse */
+  caption-side: bottom; /* position du titre du tableau top*|bottom */
+}
+
+td {
+  vertical-align: middle; /* alignement vertical du contenu baseline*|<length>|sub|super|top|text-top|middle|bottom|text-bottom */
+}
+
+/* ombres */
+el {
+  /* ombre du bloc */
+  box-shadow: inset 3px 3px 2px 3px grey; /* ombre intérieure/ombre portée, décalage horizontal, vertical, rayon de flou, longueur de diffusion, couleur */
+  /* ombre du texte */
+  text-shadow: 1px 1px 2px red; /* décalage horizontal, vertical, rayon de flou, longueur de diffusion, couleur */
+  /*
+    générateur de box-shadow : https://developer.mozilla.org/fr/docs/Web/CSS/Mod%C3%A8le_de_bo%C3%AEte_CSS/G%C3%A9n%C3%A9rateur_box-shadow
+    possibilité d'ajouter plusieurs ombres séparées par une virgule
+  */
+}
+
+/*
+  pseudo-classes
+  https://developer.mozilla.org/fr/docs/Web/CSS/Pseudo-classes
+*/
+el:hover {
+  /* élément actuellement survolé */
+}
+el:active {
+  /* entre l'appui sur le clic et son relâchement */
+}
+el:focus {
+  /* élément qui a le focus */
+}
+el:enabled {
+  /* élément qui peut être sélectionné, cliqué, ou dans lequel on peut saisir du texte */
+}
+el:disabled {
+  /* élément désactivé */
+}
+el:not(el) {
+  /* élément qui ne correspondent pas au sélecteur renseigné entre parenthèses */
+}
+a:visited {
+  /* lien déjà visité, limité au changement de couleur du texte, des bordures et de l'arrière-plan */
+}
+input:checked {
+  /* checkbox, radio, ou option sélectionnée */
+}
+input:required {
+  /* input qui possède m'attribut required */
+}
+input:invalid {
+  /* input dont la valeur ne correspond pas au type attendu */
+}
+input:valid {
+  /* input dont la validation s'effectue correctement */
+}
+:root {
+  /* racine du document, balise <html> */
+}
+
+/*
+  pseudo-éléments https://developer.mozilla.org/fr/docs/Web/CSS/Pseudo-elements
+*/
+el::after {
+  /* dernier enfant */
+}
+el::before {
+  /* premier enfant */
+}
+el::before,
+el::after {
+  content: ""; /* propriété obligatoire si on veut styliser le pseudo-élément */
+}
+el::selection {
+  /* portion sélectionnée par l'utilisateur */
+}
+
+/* dimensionnement et positionnement */
+el {
+  /*
+    propriétés d'affichage de l'élément et son contenu inline|block|inline-block|none|flex|grid|... 
+    block : l'élément est seul sur sa ligne et occupe par défaut 100% de la largeur disponible
+    inline : l'élément occupe l'espace correspondant à son contenu
+    inline-block : comportement d'un élément inline qui peut être dimensionné
+  */
+  display: block;
+  width: 75%; /* largeur du contenu hors padding et margin par défaut */
+  height: 50%; /* hauteur du contenu */
+  min-width: 15rem; /* largeur minimum */
+  min-height: 10rem; /* hauteur minimum */
+  max-width: 75rem; /* largeur maximum */
+  max-height: 50rem; /* hauteur maximum */
+  /*
+    marge extérieure, combinaison de margin-top, margin-right,margin-bottom et margin-left
+    auto pour centrer horizontalement un bloc dont la largeur est définie
+  */
+  margin: 1rem;
+  padding: 1rem; /* marge intérieure, combinaison de padding-top, padding-right, padding-bottom et padding-left */
+  box-sizing: border-box; /* width et height s'appliquent au contenu + padding + bordure content-box*|border-box */
+  /*
+    combinaison d'overflow-x et overflow-y visible*|hidden|clip|scroll|auto
+    gestion de l'affichage du contenu lorsqu'il est plus grand que l'élément
+  */
+  overflow: auto hidden;
+  overflow-wrap: anywhere; /* gestion de la césure des éléments inline normal*|break-word|anywhere */
+  word-break: break-word; /* gestion du comportement des mots trop longs normal*|break-all|keep-all|break-word */
+
+  object-fit: scale-down; /* gestion de la taille du contenu d'un élément remplacé (<img> ou <video>) fill*|contain|cover|none|scale-down */
+}
+
+el {
+  /*
+    permet de positionner l'élément à l'aide des propriétés top, left, right, bottom
+    static*|relative|absolute|sticky|fixed
+    absolute : l'élément est positionné par rapport au premier parent dont le positionnement n'est pas static
+    les blocks sortis du flux après positionnement n'occupent plus toute la largeur disponible
+    si top|right|left|bottom ne sont pas définies pour les positions absolute et fixed,
+    c'est généralement la position static qui est prise en compte par défaut
+  */
+  position: absolute;
+  /*
+    gestion de l'ordre de rendu des éléments en cas de chevauchement,
+    le z-index s'applique aux élément ayant un positionnement différent de static,
+    un élément positionné est rendu par dessus un élément static
+  */
+  z-index: 99;
+}
+
+/*
+  flexbox
+  1 axe principal défini par flex-direction et 1 axe secondaire perpendiculaire (cross axis)
+*/
+container {
+  display: flex;
+  flex-direction: row; /* disposition des items horizontalement ou verticalement row*|row-reverse|column|column-reverse */
+  flex-wrap: wrap; /* disposition des items sur une ou plusieurs ligne nowrap*|wrap|wrap-reverse */
+  justify-content: space-between; /* alignement des items le long de l'axe principal flex-start*|flex-end|center|space-between|space-around */
+  align-items: center; /* alignement des items le long de l'axe secondaire stretch*|center|flex-start|flex-end|baseline */
+  /*
+    disposition de l'ensemble des lignes/colonnes d'items sur l'axe secondaire
+    stretch*|center|flex-start|flex-end|space-between|space-around
+  */
+  align-content: space-around;
+}
+
+item {
+  margin: auto; /* centre l'élément horizontalement et verticalement */
+  align-self: flex-start; /* alignement de l'élément sur l'axe secondaire auto*|stretch|center|flex-start|flex-end|baseline */
+  order: 2; /* ordre d'apparition de l'élément dans le flux */
+  /*
+    gestion de la répartition de l'espace libre sur les différents items le long de l'axe principal,
+    l'élément est agrandi d'une portion de l'espace libre, calculée en fonction des flex-grow des autres items
+    0 par défaut
+  */
+  flex-grow: 2;
+  flex-shrink: 2; /* portion qui peut être retirée si l'espace vient à manquer, 1 par défaut */
+  /*
+    longueur initiale de l'élément
+    auto par défaut, width ou taille du contenu en l'absence de width
+    content pour forcer l'utilisation de la taille du contenu
+  */
+  flex-basis: 100rem;
+  flex: 2 1 auto; /* combinaison de flex-grow, flex-shrink et flex-basis */
+}
+
+/* transformations */
+el {
+  /*
+    transformations appliquées dans l'ordre de droite à gauche
+    translate, rotate, scale
+    https://developer.mozilla.org/fr/docs/Web/CSS/transform-function
+  */
+  transform: rotate(0.75turn) translateX(8rem) scale(2, 1.2);
+  /*
+    origine des transformations, par défaut 50% 50% 0
+    accepte aussi des unités css et left|center|right pour x, top|center|bottom pour y,
+    uniquement des unités css pour z
+    une seule valeur renseignée équivaut à laisser y à 50%, sauf pour top|bottom (x à 50%)
+  */
+  transform-origin: 0% 50%;
+}
+
+/*
+  media queries
+  https://developer.mozilla.org/fr/docs/Web/CSS/Requ%C3%AAtes_m%C3%A9dia/Utiliser_les_Media_queries
+*/
+@media screen and (min-width: 768px) and (max-width: 1199.98px) {
+  /*
+    construction d'une requête complexe à l'aide de and|not|,|only
+    types de media: all*|screen|print|speech
+  */
+}
+
+/* Dimensions Boostrap 4 */
+@media (max-width: 1199.98px) {
+  /* Large devices (desktops, less than 1200px) */
+}
+
+@media (max-width: 991.98px) {
+  /* Medium devices (tablets, less than 992px) */
+}
+
+@media (max-width: 767.98px) {
+  /* Small devices (landscape phones, less than 768px) */
+}
+
+@media (max-width: 575.98px) {
+  /* Extra small devices (portrait phones, less than 576px) */
+}
+
+/*
+  BEM
+  Bloc: entité indépendante
+  Elément: partie d'un bloc
+  Modificateur: variante d'un bloc ou d'un élément
+  .block
+  .block__element
+  .block--modifier ou block__element--modifier
+*/
+.desc-bloc {
+  background-color: lightblue;
+}
+
+.desc-bloc__desc-el {
+  font-size: 1.6rem;
+}
+
+.desc-bloc__desc-el--desc-mod {
+  outline: 1px solid red;
+}
+
+/* variables */
+:root {
+  --color-std: #15dea5;
+}
+el {
+  background-color: var(--color-std);
+}

@@ -1,0 +1,117 @@
+/*
+  12 principes de l'animation pour se rapprocher des mouvements naturels
+
+  Squash and Stretch : étirement lors de l'accélération, compression lors du ralentissement
+  Anticipation: mouvement qui prépare l'action principale
+  Staging: mouvement pour attirer l'attention à un endroit particulier
+  Straight Ahead and Pose-to-Pose: passage direct d'un état à un autre ou création d'étapes intermédiaires
+  Follow Through and Overlapping Action: variation de l'accélération d'un objet à l'autre (ex: la tête du conducteur avance légèrement après le freinage)
+  Slow in and slow out: accélération au départ du mouvement, décélération à l'arrivée
+  Arc: éviter les lignes droites
+  Secondary action : animations secondaires qui renforcent l'action principale
+  Timing: vitesse du mouvement relative à la masse de l'objet
+  Exaggeration: amplification du mouvement pour donner plus de vie à l'animation
+  Solid drawing: respect des propriétés physiques de l'objet animé (forme, poids, volume)
+  Appeal: charisme du personnage, ou intérêt de l'objet animé
+*/
+
+/* transitions */
+el {
+  /* valeurs initiales */
+  color: red;
+  transform: scale(1);
+  transition-property: color, transform; /* propriétés sujettes aux durées de transition définies par transition-duration, all par défaut */
+  transition-duration: 1.2s, 500ms; /* durée de l'animation pour chacune des propriétés définies par transition-property, 0s par défaut */
+  /*
+    méthode de calcul de la courbe d'accélération
+    ease*|ease-in|ease-out|ease-in-out|linear|step-start|step-end|steps(int,start|end)|cubic-bezier(n,n,n,n)
+    générateur de cubic-bezier : https://cubic-bezier.com/
+  */
+  transition-timing-function: ease-in-out;
+  transition-delay: 50ms; /* durée à attendre avant de déclencher l'animation */
+
+  &:hover {
+    /* valeurs cibles */
+    color: blue;
+    transform: scale(1.15);
+  }
+}
+
+el {
+  color: red;
+  transform: scale(1);
+  /*
+    raccourci pour transition-property, transition-duration, transition-timing-function et transition-delay
+    défaut all 0s ease 0s
+  */
+  transition: color 1.2s, transform 500ms;
+
+  &:hover {
+    color: blue;
+    transform: scale(1.15);
+  }
+}
+/*
+  Pour optimiser les performances:
+  privilégier l'animation des propriétés qui ne nécessitent pas le recalcul du layout ou du paint par le navigateur
+  (e.g. transform et scale() plutôt que width, ou opacity du pseudo-élément ::after plutôt que background-color)
+  https://csstriggers.com/
+  On peut observer les opérations de calcul de Chrome dans l'onglets Performance des DevTools, section Main
+*/
+
+/*
+  keyframes
+  réglage de propriétés à différents pourcentages d'avancement
+  en début et fin d'animation, si aucune valeur n'est renseignée pour la propriété, c'est sa valeur par défaut qui est prise en compte
+*/
+@keyframes show {
+  from {
+    /* ou 0% */
+    opacity: 0.1;
+    transform: scale(0);
+  }
+
+  25% {
+    transform: scale(0.15);
+  }
+
+  40%,
+  60% {
+    /* valeur fixe sur tout l'intervalle */
+    transform: scale(0.6);
+  }
+
+  75% {
+    transform: scale(0.85);
+  }
+
+  to {
+    /* ou 100% */
+    transform: scale(1);
+  }
+}
+
+/* l'animation se déclenche au chargement de la page, en l'absence de pseudo-classe */
+el {
+  animation-name: show;
+  animation-duration: 500ms;
+  /*
+    définit la courbe d'accélération de chaque keyframe
+    peut être redéfinie à l'intérieur d'une keyframe particulière
+  */
+  animation-timing-function: ease-in-out;
+  animation-delay: 1s;
+  animation-iteration-count: 2.5; /* nombres de cycles à effectuer, infinite pour jouer l'animation en boucle */
+  animation-direction: alternate; /* sens de l'animation normal*|reverse|alternate|alternate-reverse */
+  /*
+    application du style au-delà de l'animation none*|forwards|backwards|both
+    forwards: après l'animation, l'élément conserve le style défini à la dernière étape
+    backwards: le style défini à la première étape est appliqué pendant la durée d'animation-delay
+  */
+  animation-fill-mode: both;
+  animation-play-state: paused; /* mise en pause de l'animation running*|paused */
+}
+el {
+  animation: show 500ms ease-in-out 1s both;
+}
+/* cf. Chrome DevTools / More tools / Animations pour éditer des animations dans le navigateur */

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titre de la page</title>
+
+    <!-- Association de la feuille de style (fichier .css) -->
+    <link rel="stylesheet" href="css3.css" />
+    <!-- Association de la feuille de style uniquement pour les devices concernées -->
+    <link rel="stylesheet" href="xl.css" media="screen and (min-width: 1200px)" />
+  </head>
+  <body>
+    <!-- Commentaire -->
+
+    <header>
+      <!-- en-tête de la page ou d'une section, contient du contenu introductif -->
+    </header>
+
+    <footer>
+      <!-- contient des informations sur la page ou la section (auteur, contact, mentions légales) -->
+    </footer>
+
+    <nav>
+      <!-- contient une liste de liens vers d'autres pages ou des éléments de la page courante -->
+    </nav>
+
+    <section>
+      <!-- groupement de contenu autour d'une thématique, généralement identifié par un titre h1->h6 -->
+    </section>
+
+    <aside>
+      <!-- aparté qui apporte un complément au propos principal -->
+    </aside>
+
+    <article>
+      <!-- contenu autonome, indépendant du reste de la page, qui pourrait être extrait et affiché ailleurs -->
+    </article>
+
+    <h1>Titre principal : 1 seul par page pour optimisation SEO</h1>
+    <!-- h2->h6 : titres secondaires par ordre d'importance décroissant -->
+    <p id="identifiant-unique" class="blue">
+      Paragraphe
+
+      <!-- saut de ligne -->
+      <br />
+
+      <em>texte sur lequel on veut insister -> italique</em>
+      <strong>important -> gras</strong>
+      <mark>mis en évidence -> surligné</mark>
+      <span class="classe">isolation du texte sans fonction sémantique</span>
+    </p>
+
+    <div>Bloc sans fonction sémantique</div>
+
+    <!-- liste à puces, non ordonnée -->
+    <ul>
+      <li>item 1</li>
+      <li>item 2</li>
+      <li>item 3</li>
+    </ul>
+
+    <!-- liste numérotée -->
+    <ol>
+      <li>item n°1</li>
+      <li>item n°2</li>
+      <li>item n°3</li>
+    </ol>
+
+    <!-- liste de descriptions -->
+    <dl>
+      <dt>terme à décrire 1</dt>
+      <dd>description 1</dd>
+
+      <dt>terme à décrire 2</dt>
+      <dd>description 2</dd>
+    </dl>
+
+    <!--
+        lien vers une autre page
+        target _blank pour ouvrir un nouvel onglet ou une nouvelle fenêtre
+        l'url peut être le chemin d'un fichier pour proposer le téléchargement
+    -->
+    <a href="url" title="infobulle" target="_blank"></a>
+    <!-- lien vers un élément de la page -->
+    <a href="#id"></a>
+    <!-- envoi d'email -->
+    <a href="mailto:email@domain.com"></a>
+
+    <!-- image, attributs src et alt obligatoires -->
+    <img src="url" alt="description" title="infobulle" />
+
+    <!-- illustration, pas obligatoirement une image, possibilité de placer plusieurs images/citations/codes sources avant la légende -->
+    <figure>
+      <img src="url" alt="desc" />
+      <figcaption>Légende</figcaption>
+    </figure>
+
+    <!-- tableaux -->
+    <table>
+      <caption>
+        Titre
+      </caption>
+
+      <!-- en-tête -->
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <!-- pied -->
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
+
+      <!-- corps -->
+      <tbody>
+        <!-- ligne -->
+        <tr>
+          <!-- cellule -->
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <!-- fusion de colonnes -->
+          <td colspan="2"></td>
+          <!-- fusion de lignes -->
+          <td rowspan="2"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- formulaires -->
+    <form action="url" method="POST">
+      <label for="id-input">Description</label>
+      <!-- une ligne de texte, size correspond au nombre de caractères affichés -->
+      <input
+        type="text"
+        id="id-input"
+        name="nom"
+        value="Défaut"
+        size="25"
+        maxlength="12"
+        placeholder="texte"
+        pattern="regex"
+        autofocus
+        required
+      />
+      <!-- texte sur plusieurs lignes -->
+      <textarea name="" id="" cols="30" rows="10">Défaut</textarea>
+
+      <!-- mot de passe, caractères masqués par le navigateur -->
+      <input type="password" name="" id="" />
+      <!-- vérification de la conformité d'une adresse email, adaptation du clavier (@, extensions,etc.) -->
+      <input type="email" name="" id="" />
+      <!-- adaptation du clavier à la saisie d'une url (/, extensions,etc.) -->
+      <input type="url" name="" id="" />
+      <!-- adaptation du clavier à la saisie d'un numéro de téléphone (pavé numérique) -->
+      <input type="tel" name="" id="" />
+
+      <!-- valeurs numériques -->
+      <input type="number" name="" id="" min="0" max="99" step="1" />
+      <input type="range" name="" id="" min="0" max="99" step="1" />
+
+      <!-- couleur -->
+      <input type="color" name="" id="" />
+      <!-- date -->
+      <input type="date" name="" id="" />
+      <!-- champs de recherche, le navigateur peut mémoriser les dernières recherches et proposer l'auto-complétion -->
+      <input type="search" name="" id="" />
+
+      <!-- checkbox, valeur "on" par défaut -->
+      <input type="checkbox" name="" id="" value="val" checked />
+      <!-- bouton radio, un seul choix -->
+      <input type="radio" name="propriete" value="Defaut" id="radio1" checked />
+      <input type="radio" name="propriete" value="val2" id="radio2" />
+      <input type="radio" name="propriete" value="val3" id="radio3" />
+      <!-- liste déroulante, un seul choix -->
+      <select name="" id="">
+        <optgroup label="Groupe 1">
+          <option value="1" selected>Description</option>
+          <option value="2">Description</option>
+        </optgroup>
+        <optgroup label="Groupe 2">
+          <option value="3">Description</option>
+          <option value="4">Description</option>
+        </optgroup>
+      </select>
+
+      <!-- bouton d'envoi du formulaire -->
+      <input type="submit" value="Envoyer" />
+      <!-- utilisation d'une image comme bouton d'envoi -->
+      <input type="image" src="url" alt="Envoi du formulaire" />
+
+      <!-- bouton générique qui ne déclenche pas l'envoi du formulaire, son évènement click est généralement géré par JS -->
+      <input type="button" value="Envoyer" />
+
+      <!--
+        regroupement de champs dans des sections,
+        un bug dans Chrome et Edge empêche le fonctionnement de flex pour <fieldset> (08 avril 2020)
+      -->
+      <fieldset>
+        <legend>1ère sous-partie du formulaire</legend>
+        <input type="text" />
+        <input type="text" />
+        <input type="text" />
+      </fieldset>
+      <fieldset>
+        <legend>2ème sous-partie du formulaire</legend>
+        <input type="text" />
+        <input type="text" />
+      </fieldset>
+    </form>
+
+    <!-- audio -->
+    <audio src="url" controls autoplay loop preload="auto*|metadata|none">
+      Contenu affiché uniquement si l'audio n'est pas supporté par le navigateur
+    </audio>
+    <!-- le premier format supporté est utilisé -->
+    <audio controls>
+      <source src="url.mp3" type="audio/mpeg" />
+      <source src="url.ogg" type="audio/ogg" />
+    </audio>
+
+    <!--
+      vidéo
+      width et height: valeurs en pixels, les proportions de la vidéo sont toujours conservées
+      poster: image affichée avant le chargement de la vidéo
+    -->
+    <video src="url" controls autoplay loop poster="url.png" width="640" height="480" preload="auto*|metadata|none">
+      Contenu affiché uniquement si la vidéo n'est pas supportée par le navigateur
+    </video>
+    <video controls>
+      <source src="url.mp4" type="video/mp4" />
+      <source src="url.webm" type="video/webm" />
+    </video>
+  </body>
+</html>
