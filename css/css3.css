@@ -102,8 +102,8 @@ el {
   border-top-left-radius: 10%; /* idem pour border-top-right-radius, border-bottom-right-radius et border-bottom-left-radius */
   /*
     combinaison :
-    1 valeur -> 4 coins, 2 valeurs -> top-left/bottom-right,
-    3 valeurs -> top-left, top-right/bottom-left, bottom-right, 4 valeurs -> top-left, top-right, bottom-right, bottom-left,
+    1 valeur -> 4 coins, 2 valeurs -> top-left/bottom-right top-right/bottom-left,
+    3 valeurs -> top-left top-right/bottom-left bottom-right, 4 valeurs -> top-left top-right bottom-right bottom-left,
     rayons horizontaux / rayons verticaux pour des arrondis elliptiques */
   border-radius: 25% 10% / 5% 20%;
 }
