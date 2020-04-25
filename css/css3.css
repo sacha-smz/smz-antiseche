@@ -204,7 +204,7 @@ el {
   max-width: 75rem; /* largeur maximum */
   max-height: 50rem; /* hauteur maximum */
   /*
-    marge extérieure, combinaison de margin-top, margin-right,margin-bottom et margin-left
+    marge extérieure, combinaison de margin-top, margin-right, margin-bottom et margin-left
     auto pour centrer horizontalement un bloc dont la largeur est définie
   */
   margin: 1rem;
