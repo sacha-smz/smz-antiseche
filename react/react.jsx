@@ -22,7 +22,7 @@ function Composant() {
   avec element sous la forme React.createElement(Composant) ou <Composant />
 */
 
-/* exemple de JSX avec paramètre, affichage de 2 éléments, un utilisant une valeur par défaut, l’autre un argument passé au composant */
+/* exemple de JSX avec paramètres */
 function Composant(props) {
   // décomposition de l’objet passé en argument, correspondant à l’ensemble des attributs
   const { prop1, prop2 } = props;
