@@ -1,0 +1,224 @@
+/*
+  nesting
+  privilégier un seul niveau de profondeur pour des questions de maintenabilité
+*/
+.el1 {
+  .el2 {
+    /* équivaut à .el1 .el2 */
+  }
+
+  > .el2 {
+    /* équivaut à .el1 > .el2 */
+  }
+
+  + .el2 {
+    /* équivaut à .el1 + .el2 */
+  }
+
+  ~ .el2 {
+    /* équivaut à .el1 ~ .el2 */
+  }
+
+  &:hover {
+    /* concaténation avec le sélecteur parent, équivaut à .el1:hover */
+  }
+
+  &.el2 {
+    /* cible l'élément qui possède les deux classes .el1.el2 */
+  }
+
+  @media (max-width: 767.98px) {
+    /* règles spécifiques au media décrites directement dans le scope du sélecteur */
+  }
+}
+
+.block {
+  &__element {
+    &--modifier {
+      /*
+        utilisation de BEM, simple concaténation,
+        les sélecteurs ainsi nestés n'ont pas de relation ascendant <-> descendant
+      */
+    }
+  }
+}
+
+/* variables */
+$color-primary: #15dea5;
+el {
+  background-color: $color-primary;
+}
+
+/*
+  listes
+  @use "sass:list";
+*/
+$font-size: 6rem 4rem 2rem; /* ou $font-size: 6rem, 4rem, 2rem; */
+el {
+  font-size: list.nth($font-size, 2); /* 4rem */
+}
+/* liste de listes */
+$icons: "eye" 12px, "start" 16px, "stop" 10px;
+
+/*
+  maps
+  @use "sass:map";
+*/
+$font-size: (
+  "banner": 6rem,
+  "header": 4rem,
+  "footer": 2rem
+);
+el {
+  font-size: map.get($font-size, "banner"); /* 6rem */
+}
+/* nesting de maps */
+$txt-input-palette: (
+    "focus":
+    (
+      "bg": $colour-primary,
+      "border": $colour-primary,
+      "txt": $colour-white
+    ),
+    "invalid":
+    (
+      "bg": $colour-invalid,
+      "border": $colour-white,
+      "txt": $colour-white
+    )
+);
+input:invalid {
+  background-color: map.get(map.get($txt-input-palette, "invalid"), "bg");
+}
+
+/* boucle @each */
+@each $val in list {
+}
+@each $state, $map in $txt-input-palette {
+  /* interpolation: #{$var} pour insérer une expression SassScript dans le css */
+  &:#{$state} {
+    background-color: map.get($map, "bg");
+  }
+}
+
+/*
+  mixins
+  dans le css, les propriétés sont inclues dans le scope du sélecteur (répétition de code)
+*/
+@mixin color-primary {
+  background-color: $color-primary;
+  opacity: 0.95;
+}
+el {
+  @include color-primary; /* applique à l'élément les règles définies dans le mixin */
+  font-weight: bolder;
+}
+/* arguments et valeurs par défaut */
+@mixin border-std($opacity: 0.95, $border-color: $color-primary) {
+  opacity: $opacity;
+  border: 0.1rem solid $border-color;
+}
+el {
+  @include border-std(0.75);
+  font-weight: bolder;
+}
+/* injection de contenu */
+@mixin border-hover {
+  &:hover {
+    @content;
+  }
+}
+el {
+  @include border-hover {
+    border-color: red;
+  }
+}
+
+/*
+  extensions
+  dans le css, les propriétés n'apparaissent qu'une fois mais s'appliquent à tous les sélecteurs qui les étendent
+  el1, el2, el3 {...}
+*/
+.border-std {
+  opacity: 0.95;
+  border: 0.1rem solid $color-primary;
+}
+el {
+  @extend .border-std;
+  font-weight: bolder;
+}
+/* même effet sur l'élément mais aucun sélecteur border-std ne sera complié vers le css */
+%border-std {
+  opacity: 0.95;
+  border: 0.1rem solid $color-primary;
+}
+el {
+  @extend %border-std;
+  font-weight: bolder;
+}
+
+/*
+  fonctions
+  https://sass-lang.com/documentation/at-rules/function
+*/
+@function size-change($param) {
+  /* ... */
+  @return $result;
+}
+el {
+  font-size: size-change(1.3rem);
+}
+
+/*
+  modules Sass
+  https://sass-lang.com/documentation/modules
+*/
+@use "sass:color";
+el {
+  /*
+    assombrit une couleur, retire une valeur fixe
+    ex: valeur de la luminosité -= 30% (noir si 30% au départ)
+  */
+  color: color.adjust($color-primary, $lightness: -30%);
+}
+el {
+  /*
+    assombrit une couleur, la rapproche du noir de 30%
+    ex: luminosité à 21% si 30% au départ
+  */
+  color: color.scale($color-primary, $lightness: -30%);
+}
+
+/* conditions */
+el {
+  $lightness-diff: 0%;
+  @if (color.lightness($color) < 25%) {
+    /* opérateurs not (bool) | (bool) and (bool) | (bool) or (bool) */
+    $lightness-diff: 10%;
+  } @else {
+    $lightness-diff: -10%;
+  }
+  text-shadow: 0.5rem 0.5rem color.scale($color, $lightness: $lightness-diff);
+}
+
+/*
+  pattern 7-1
+
+  7 répertoires à l'intérieur du répertoir sass/
+
+  utils/        variables, fonctions, mixins, extensions
+  vendors/      styles externes
+  base/         règles générales: typographie, reset, etc.
+  components/   petits éléments qui composent les blocs du layout : boutons, sliders, dropdowns, inputs, etc.
+  layout/       grands blocs réutilisables: header, nav, sidebar, footer,formulaire, etc.
+  pages/        éléments spécifiques à une seule page
+  themes/       variations du thème
+
+  fichiers partiels nommés avec un underscore : _variables.scss
+  en haut du fichier principal: @use "./utils/variables"; (sans l'underscore ni l'extension) 
+*/
+
+/*
+  postcss + autoprefixer pour ajouter les préfixes vendeurs
+  "postcss ./public/css/style.css --use autoprefixer -r"
+*/
