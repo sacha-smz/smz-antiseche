@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Interface commune à la fois à l'objet décoré et à ses décorateurs,
  * elle décrit le comportement dont ils ont tous la responsabilité : le formatage du texte
@@ -125,7 +126,7 @@ BOUND;
  * Instanciation de l'objet au comportement basique
  */
 $rowInput = new TextInput();
-echo $rowInput->formatText($dangerousComment);
+echo $rowInput->formatText("$dangerousComment\n\n");
 /**
  * output, texte brut:
  * Hello! Nice blog post!
@@ -140,7 +141,7 @@ echo $rowInput->formatText($dangerousComment);
  * l'objet à décorer est passé comme argument au constructeur
  */
 $safeInput = new DangerousHTMLTagsFilter($rowInput);
-echo $safeInput->formatText($dangerousComment);
+echo $safeInput->formatText("$dangerousComment\n\n");
 /**
  * output, fruit de l'appel à la méthode de formatage de rowInput (i.e. aucun formatage, texte brut),
  * suivi du retrait des balises dangereuses (script):
@@ -153,7 +154,7 @@ echo $safeInput->formatText($dangerousComment);
  * (on décore un objet déjà décoré)
  */
 $filteredInput = new PlainTextFilter($safeInput);
-echo $filteredInput->formatText($dangerousComment);
+echo $filteredInput->formatText("$dangerousComment\n\n");
 /**
  * output, texte brut sécurisé par le 1er décorateur, duquel
  * le second décorateur a retiré toutes les balises restantes:

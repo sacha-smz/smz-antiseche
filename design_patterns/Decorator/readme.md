@@ -6,7 +6,7 @@
 
 Ajouter des caractéristiques à une classe sans la modifier, ni utiliser des classes spécialisées après en avoir hérité.
 
-## Avantages
+## Fonctionnement
 
 Le design pattern Decorator permet de construire simplement un objet complexe dont le comportement peut varier selon l'usage qui en est attendu au moment de l'exécution.
 
@@ -17,5 +17,5 @@ Chaque Decorator doit également redéfinir en conséquence la méthode de calcu
 
 ## Implémentation
 
-- [exemple en TypeScript](./decorator.ts "Decorator - exemple Typescript")
-- [exemple en PHP](./decorator.ts "Decorator - exemple PHP")
+- [exemple en TypeScript](./examples/decorator.ts "Decorator - exemple Typescript")
+- [exemple en PHP](./examples/decorator.php "Decorator - exemple PHP")
