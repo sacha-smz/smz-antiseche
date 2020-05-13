@@ -1,6 +1,6 @@
 # Observer
 
-<p style="text-align:center;"><img src="../img/observer_diagram.png" alt="Observer diagram" title="Observer diagram"></p>
+<p align="center"><img src="../img/observer_diagram.png" alt="Observer diagram" title="Observer diagram"></p>
 
 ## Rôle
 

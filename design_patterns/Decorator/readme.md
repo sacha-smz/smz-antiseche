@@ -1,6 +1,6 @@
 # Decorator
 
-<p style="text-align:center;"><img src="../img/decorator_diagram.png" alt="Decorator diagram" title="Decorator diagram"></p>
+<p align="center"><img src="../img/decorator_diagram.png" alt="Decorator diagram" title="Decorator diagram"></p>
 
 ## Rôle
 
