@@ -17,7 +17,7 @@ class ConcreteSubject implements Subject {
   public state: number;
 
   /**
-   * @type {Observer[]} Liste des observateurs abonnés stockée dans un tableau,
+   * Liste des observateurs abonnés stockée dans un tableau,
    * (ES6 pour le support du Set)
    */
   private observers: Observer[] = [];

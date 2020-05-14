@@ -28,9 +28,6 @@ class TextInput implements InputFormat
  */
 class TextFormat implements InputFormat
 {
-  /**
-   * @var InputFormat
-   */
   protected $inputFormat;
 
   public function __construct(InputFormat $inputFormat)

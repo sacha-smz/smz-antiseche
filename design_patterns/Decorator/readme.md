@@ -4,11 +4,11 @@
 
 ## Rôle
 
-Ajouter des caractéristiques à une classe sans la modifier, ni utiliser des classes spécialisées après en avoir hérité.
+Ajouter des caractéristiques à une classe sans la modifier, ni utiliser des classes spécialisées par héritage.
 
 ## Fonctionnement
 
-Le design pattern Decorator permet de construire simplement un objet complexe dont le comportement peut varier selon l'usage qui en est attendu au moment de l'exécution.
+Le design pattern Decorator permet de construire simplement, à partir d'un objet basique, un objet complexe dont le comportement correspond à l'usage qui en est attendu au moment de l'exécution.
 
 On peut enrichir les fonctionnalité d'un objet en utilisant successivement différents décorateurs, chacun d'entre eux fournissant à l'objet initial une caractéristique supplémentaire.
 

@@ -12,7 +12,7 @@ Le design pattern Observer permet de tenir à jour tout au long de l'exécution 
 
 L'objet dont l'état peut influencer le comportement des autres (Subject, Publisher), notifie à chaque changement chacun des objets qui l'observent (Observer, Subscriber).
 
-Le Publisher dispose de deux méthodes qui permettent aux Subscribers de s'abonner ou de se désabonner aux notifications émises à chaque évènement et il stocke la liste de ses abonnés dans un tableau.
+Le Publisher dispose de deux méthodes qui permettent aux Subscribers de s'abonner ou se désabonner aux notifications émises à chaque évènement, et il stocke la liste de ses abonnés dans un tableau.
 
 Le Subscriber implémente une méthode que le Publisher peut appeler pour le notifier d'un changement d'état et adapter son comportement en conséquence.
 
