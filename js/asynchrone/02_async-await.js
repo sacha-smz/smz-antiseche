@@ -34,11 +34,11 @@ const asyncFn2 = async () => {
  * le code situé en dehors de la fonction asynchrone peut quant à lui s'éxécuter pendant ce temps
  */
 async function asyncFn3() {
-  const result1 = await asyncFn1();
-  // en cas de succès, 'result1' vaut 42
+  const result = await asyncFn2();
+  // en cas de succès, 'result' vaut 23
   // en cas d'échec, 'await' lève une exception ayant pour valeur la raison du rejet
   console.log("Second!");
-  return result1 + 24;
+  return result + 24;
 }
 asyncFn3();
 console.log("First!");
@@ -88,8 +88,8 @@ async function asyncFn() {
       reject("error");
     }, 2400);
   });
-  // l'exécution de l'instruction 'await' avant l'échec de la promesse
-  // permet la transmission de l'erreur au prochain 'catch'
+  // c'est l'exécution de l'instruction 'await', avant l'échec de la promesse,
+  // qui permet de lever une erreur interceptée par le prochain 'catch'
   await promise;
 }
 asyncFn().catch(err => {

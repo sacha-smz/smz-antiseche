@@ -51,6 +51,11 @@ Table.init(
     sequelize: client,
     // nom du modèle utilisé pour la génération automatique des clés étrangères, le modèle est accessible via 'sequelize.models.table'
     modelName: "table",
+    // versions du nom utilisées pour construire les noms des méthodes spéciales des associations
+    name: {
+      singular: "table", // nom du modèle au singulier par défaut
+      plural: "tables" // nom du modèle au pluriel par défaut
+    },
     // nom de la table, nom du model mis au pluriel par défaut
     tableName: "table",
     // snake case pour les noms des champs des timestamps et les clés étrangères, false par défaut
@@ -71,6 +76,7 @@ client.sync();
 /**
  * Déclaration d'un hook pour déclencher systématiquement l'exécution d'une instruction à une certaine étape du cycle de vie du modèle
  * e.g. : traitement sur un champ juste avant l'insertion d'une entrée dans la table
+ * https://sequelize.org/v5/manual/hooks.html
  */
 Table.beforeCreate((entry, options) => {
   // 'entry' représente l'entrée en cours de création et 'options' l'objet passé à la méthode 'create' en second argument
@@ -220,7 +226,12 @@ Customer.hasOne(Cart, {
  * dans la table 'order', chaque entrée correspondant à l'une de ses commandes possède un champ qui le référence
  */
 Customer.hasMany(Order, {
-  as: "orders",
+  // versions de l'alias utilisées pour construire les noms des méthodes spéciales,
+  // l'alias est automatiquement mis au singulier en l'absence d'objet
+  as: {
+    singular: "order",
+    plural: "orders"
+  },
   foreignKey: {
     name: "customer_id",
     // une commande est forcément rattachée à un client
@@ -304,3 +315,38 @@ Customer.findAll({
     }
   }
 });
+
+/**
+ * Sequelize propose un ensemble de méthodes qui simplifie la gestion des associations entre les instances :
+ * https://sequelize.org/master/manual/assocs.html#special-methods-mixins-added-to-instances
+ *
+ * Le nom de chaque méthode est construit à partir du singulier ou du pluriel du
+ * nom de l'alias de l'association s'il a été renseigné, du nom du modèle cible sinon
+ */
+const cart = Cart.build();
+const item1 = Item.build();
+const item2 = Item.build();
+// ajouter un article au panier
+cart.addItem(item1);
+// créer un article et l'ajouter au panier
+cart.createItem({ field: value });
+// retirer un article du panier
+cart.removeItem(item1);
+// ajouter plusieurs articles au panier
+cart.addItems([item1, item2]);
+// retirer plusieurs articles du panier
+cart.removeItems([item1, item2]);
+// définir le contenu du panier
+cart.setItems([item1, item2]);
+// vider le panier
+cart.setItems([]);
+// vérifier la présence d'un article dans le panier
+cart.hasItem(item1); // 'true' si 'item1' est présent dans 'cart', 'false' sinon
+// vérifier la présence de plusieurs articles dans le panier
+cart.hasItems([item1, item2]); // 'true' si tous les articles sont présents dans 'cart', 'false' sinon
+// compter les articles présents dans le panier
+cart.countItems();
+// accéder aux articles contenus dans le panier
+cart.getItems(); // retourne un tableau d'instances d'Item
+// accéder aux articles du panier qui correspondent à un critère de recherche
+cart.getItems({ where: { field: value } });

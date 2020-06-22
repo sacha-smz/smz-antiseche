@@ -33,11 +33,11 @@ asyncFn1()
  * - si elle lève une erreur, 'then' retourne une promesse rejetée
  * - si elle retourne une promesse déjà résolue, 'then' retourne une promesse résolue avec la même valeur
  * - si elle retourne une promesse déjà rejetée, 'then' retourne une promesse rejetée avec la même valeur
- * - si elle retourne une promesse en cours de traitement, 'then' retournera après son succès ou échec
- * une promesse résolue ou rejetée avec la même valeur
+ * - si elle retourne une promesse en cours de traitement, 'then' retourne une promesse en attente qui sera
+ * résolue ou rejetée par les mêmes valeurs
+ *
+ * Ainsi, le fait de retourner une promesse dans la fonction de rappel de 'then' permet d'éviter les imbrications
  */
-
-// Ainsi, le fait de retourner une promesse dans la fonction de rappel de 'then' permet d'éviter les imbrications :
 //! ne pas faire
 asyncFn1().then(() => {
   asyncFn2().then(() => {
@@ -46,9 +46,15 @@ asyncFn1().then(() => {
 });
 // mais plutôt
 asyncFn1()
-  .then(() => asyncFn2())
-  .then(() => asyncFn3())
-  .then(() => {});
+  .then(() => {
+    return asyncFn2();
+  })
+  .then(() => {
+    return asyncFn3();
+  })
+  .then(() => {
+    //...
+  });
 
 /**
  * Il est possible de poursuivre la chaîne après un 'catch' pour éxécuter
