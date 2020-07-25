@@ -168,3 +168,14 @@ for (const c of str) {
   3
   😱
 ```
+
+#### Endianness & BOM
+
+Le **boutisme** ou **endianness** désigne l'ordre dans lequel les octets constitutifs d'une même séquence sont inscrits en mémoire. On parle de système **_gros-boutiste_** ou **_big-endian_** lorsque l'octet de poids le plus fort est stocké à la plus petite adresse mémoire et de système **_petit-boutiste_** ou **_little-endian_** lorsque c'est à l'inverse l'octet de poids le plus faible qui est stocké à la plus petite adresse.
+
+L'**indicateur d'ordre des octets** ou **BOM** (_byte order mark_) est le caractère Unicode correspondant au _code point_ **U+FEFF**. Il peut être placé au tout début d'un fichier ou flux encodé en UTF-16 pour indiquer le boutisme utilisé pour les caractères suivants :
+
+- paire d'octets FE-FF pour l'ordre _big-endian_
+- paire d'octets FF-FE pour l'ordre _little-endian_
+
+Une tentative d'interprétation avec le mauvais boutisme produit le _code point_ U+FFFE qui est défini par le standard Unicode comme un caractère non valide (_noncharacter_)

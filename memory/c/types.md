@@ -18,11 +18,11 @@
 
 ![Représentation du nombre décimal][float-format]
 
-[float-format]: ./float_format.svg "Float format"
+[float-format]: img/float_format.svg "Float format"
 
 ![Stockage d'un float][float-32bits]
 
-[float-32bits]: ./float_32bits.svg "Float 32 bits"
+[float-32bits]: img/float_32bits.svg "Float 32 bits"
 
 - Le **1er bit** détermine le **signe** : **0** pour ➕, **1** pour ➖
 - La séquence des **8 bits suivants** détermine la valeur de l'**exposant**. L'**octet de valeur 127** (01111111) correspond à l'**exposant zéro** .
@@ -44,7 +44,7 @@ Meilleure approximation :
 
 ![Stockage d'un float][float-32bits-example]
 
-[float-32bits-example]: ./float_0.8.svg "Float 32 bits"
+[float-32bits-example]: img/float_0.8.svg "Exemple float 32 bits"
 
 ## double
 
