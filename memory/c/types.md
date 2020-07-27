@@ -27,7 +27,7 @@
 - Le **1er bit** détermine le **signe** : **0** pour ➕, **1** pour ➖
 - La séquence des **8 bits suivants** détermine la valeur de l'**exposant**. L'**octet de valeur 127** (01111111) correspond à l'**exposant zéro** .
   La valeur de l'exposant est comprise entre **-126** (octet de valeur 1) à **127** (octet de valeur 254).  
-  La **valeur d'octet 0** (00000000) ne correspond pas à l'exposant -127 mais est utilisée pour représenter le **nombre 0**, qui ne peut pas s'écrire sous la forme ± 2<sup>exposant</sup> × 1.mantisse.  
+  La **valeur d'octet 0** (00000000) ne correspond pas à l'exposant -127 mais est utilisée pour représenter le **nombre 0**, qui ne peut pas s'écrire sous la forme ± 2<sup>exposant</sup> × mantisse.  
   La **valeur d'octet 255** (11111111) ne correspond pas à l'exposant 128 mais est utilisée pour représenter les valeurs **NaN, Infinity et -Infinity**
 - La séquence des **23 bits suivants** détermine la valeur à ajouter à 1 pour former la **mantisse**. Le premier bit représente la valeur de 2<sup>-1</sup>, le second 2<sup>-2</sup> et ainsi de suite, de manière à ce que la mantisse soit toujours comprise entre 1 et 2 exclu
 
@@ -52,7 +52,7 @@ Meilleure approximation :
 
 L'**exposant** et la **mantisse** sont encodés respectivement sur **11** et **52 bits**.  
 La **séquence des bits d'exposant** de valeur **1023** correspond à l'**exposant zéro**.  
-La **séquence 0** (00000000000) ne correspond pas à l'exposant -1023 mais est utilisée pour représenter le **nombre 0**  
+La **séquence 0** (00000000000) ne correspond pas à l'exposant -1023 mais est utilisée pour représenter le **nombre 0**.  
 La **séquence 2047** (11111111111) ne correspond pas à l'exposant 1024 mais est utilisée pour représenter **NaN, Infinity et -Infinity**
 
 ## void
