@@ -89,7 +89,4 @@ int main()
   }
 
   pop(stackPtr);
-
-  free(stackPtr->data);
-  free(stackPtr);
 }
