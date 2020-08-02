@@ -17,15 +17,13 @@ asyncFn(true); // retourne une promesse rejetée avec la valeur de l'exception l
  * Le mot-clé 'async' peut aussi être utilisé pour définir
  * une fonction asynchrone au sein d'une expression
  */
-const asyncFn1 = async function () {
-  setTimeout(() => {
-    return 42;
-  }, 2400);
+const asyncFn = async function () {
+  if (problem === true) throw "reason";
+  return 42;
 };
-const asyncFn2 = async () => {
-  setTimeout(() => {
-    return 23;
-  }, 2400);
+const asyncFn = async () => {
+  if (problem === true) throw "reason";
+  return 42;
 };
 
 /**
@@ -33,17 +31,30 @@ const asyncFn2 = async () => {
  * l'exécution de son code le temps de la résolution de la promesse retournée par une fonction asynchrone,
  * le code situé en dehors de la fonction asynchrone peut quant à lui s'éxécuter pendant ce temps
  */
-async function asyncFn3() {
-  const result = await asyncFn2();
-  // en cas de succès, 'result' vaut 23
+async function asyncFn() {
+  const result = await (() => {
+    return new Promise((resolve, reject) => {
+      if (problem === true) return reject("reason");
+      setTimeout(() => {
+        console.log("Second!");
+        resolve(42);
+      }, 400);
+    });
+  })();
   // en cas d'échec, 'await' lève une exception ayant pour valeur la raison du rejet
-  console.log("Second!");
-  return result + 24;
+  // en cas de succès, 'result' vaut 42
+
+  console.log("Third!");
+  console.log(result);
+
+  return "OK";
 }
-asyncFn3();
+asyncFn();
 console.log("First!");
 // First!
 // Second!
+// Third!
+// 42
 
 /**
  * En cas d'échec de la promesse dont la résolution est attendue par 'await', une exception est levée et
