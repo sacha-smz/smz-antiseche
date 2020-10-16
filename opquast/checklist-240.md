@@ -52,7 +52,7 @@
     à la création d'un compte, envoi d'un e-mail de confirmation pour s'assurer que l'utilisateur est bien à l'origine de cette action
 
 18. **Usurpation d'identité**  
-    utilisation d'un mécanisme de prévention de l'usurpation d'identité afin de renforcer la confiance de l'utilisateur
+    utilisation d'un mécanisme de prévention de l'usurpation d'identité (e.g. : authentification à double facteur) afin de renforcer la confiance de l'utilisateur
 
 19. **Fermeture de compte**  
     présence d'une procédure automatisée de clôture du compte
